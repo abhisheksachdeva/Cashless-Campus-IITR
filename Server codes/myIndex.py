@@ -1,6 +1,5 @@
 from bottle import route, run, template,response, get, post,request, static_file
 import os
-# from config import *
 import time
 import requests
 import json
@@ -19,9 +18,6 @@ def home():
 def sendToCLient():
 	no=request.forms.get('q')
 	print no
-	# query_components = parse_qs(urlparse(url+'/id?q=2').query)
-	# # id = int ()
-	# print query_components['q']
 	readFile= open('serverData.csv','rb')
 	reader = csv.reader(readFile)
 	lines=[l for l in reader]
@@ -44,9 +40,6 @@ def receiveFile():
 	if os.path.exists("serverData.csv"):
 		os.remove("serverData.csv")
 		userData.save(file_path)
-    # else:
-    # 	userData.save(file_path)
-
 
 @post('/getfile')
 def getFile():

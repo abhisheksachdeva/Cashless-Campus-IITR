@@ -38,6 +38,7 @@ def sendToCLient():
 @post('/user')
 def receiveFile():
 	userData = request.files.get('report')
+	flagid=request.forms.get('flag')
 	userID= request.forms.get('q')
 	print userID
 	print userData.filename
@@ -49,11 +50,14 @@ def receiveFile():
 	reader = csv.reader(readFile)
 	lines=[l for l in reader]
 	for line in lines:
-                if int(line[0])==int (userID):
-                        client = TwilioRestClient(account_sid, auth_token)
-			message = client.messages.create(to="++917060334386", from_="+12248032729",
-                                     body="\nA/c holder: "+line[1]+"\nTransaction Successful for ID "+line[0]+". Balance is "+line[2])
-                                                  
+		if int(line[0])==int (userID):
+			client = TwilioRestClient(account_sid, auth_token)
+			if flagid=='f':
+				message = client.messages.create(to="++917060334386", from_="+12248032729",
+	                                     body="\nA/c holder: "+line[1]+"\nTransaction Successful for ID "+line[0]+". Balance is "+line[2])
+	        	elif flagid=='e':
+	        		message = client.messages.create(to="++917060334386", from_="+12248032729",
+	                                     body="\nA/c holder: "+line[1]+"\nEnrollment Successful for ID "+line[0]+". Balance is "+line[2])
 	readFile.close()
 	
 

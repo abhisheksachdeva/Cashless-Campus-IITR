@@ -24,7 +24,7 @@ def sendToCLient():
 	readFile= open('serverData.csv','rb')
 	reader = csv.reader(readFile)
 	lines=[l for l in reader]
-	name ='Account Not Found!'
+	name ='Account Not Found'
 	for line in lines:
                 if int(line[0])==int (no):
                         print "Name is ",line[1]

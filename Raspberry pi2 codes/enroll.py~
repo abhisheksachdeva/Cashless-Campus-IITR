@@ -1,7 +1,6 @@
 import serial,time
 import csv
 ser = serial.Serial('/dev/ttyACM0',9600)
-ser.write("2")
 outfile=open('user.csv',"a")
 writer=csv.writer(outfile,dialect="excel")
 while True:
